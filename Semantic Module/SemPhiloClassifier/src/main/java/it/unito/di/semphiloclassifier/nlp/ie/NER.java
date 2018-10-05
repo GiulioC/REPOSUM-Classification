@@ -3,7 +3,7 @@ package it.unito.di.semphiloclassifier.nlp.ie;
 import java.util.List;
 import java.util.Set;
 
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
 
 
 /**
@@ -27,7 +27,7 @@ public class NER {
 	/**
 	 * Lista delle named entities trovate
 	 */
-	private Set<PhiloItem> nes;
+	private Set<PhiloEntity> nes;
 	
 	
 	
@@ -37,13 +37,13 @@ public class NER {
 
 
 
-	public Set<PhiloItem> getNes() {
+	public Set<PhiloEntity> getNes() {
 		if(nes == null)
 			findNes();
 		return nes;
 	}
 
-	public void setNes(Set<PhiloItem> nes) {
+	public void setNes(Set<PhiloEntity> nes) {
 		this.nes = nes;
 	}
 

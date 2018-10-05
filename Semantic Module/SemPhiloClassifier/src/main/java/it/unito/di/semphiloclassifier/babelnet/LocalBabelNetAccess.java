@@ -11,7 +11,7 @@ import it.uniroma1.lcl.babelnet.InvalidBabelSynsetIDException;
 import it.uniroma1.lcl.babelnet.data.BabelPOS;
 import it.uniroma1.lcl.babelnet.data.BabelSenseSource;
 import it.uniroma1.lcl.jlt.util.Language;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem.PhiloTag;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity.PhiloTag;
 
 
 public class LocalBabelNetAccess implements BabelNetAccess {

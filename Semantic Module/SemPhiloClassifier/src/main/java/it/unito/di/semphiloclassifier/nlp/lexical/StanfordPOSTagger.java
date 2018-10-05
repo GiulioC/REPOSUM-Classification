@@ -14,7 +14,7 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 import it.unito.di.semphiloclassifier.nlp.entities.PhiloConcept;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
 
 /**
  * La classe implementa il POS Tagger utilizzando
@@ -77,8 +77,8 @@ public class StanfordPOSTagger extends POSTagger {
 	}
 	
 	@Override
-	public Set<PhiloItem> filterPossiblyPhilosophicalConcepts() {
-		Set<PhiloItem> concepts = new HashSet<PhiloItem>();
+	public Set<PhiloEntity> filterPossiblyPhilosophicalConcepts() {
+		Set<PhiloEntity> concepts = new HashSet<PhiloEntity>();
 		String previousPos = "";
 		String previousToken = "";
 		String previousPreviousToken = "";

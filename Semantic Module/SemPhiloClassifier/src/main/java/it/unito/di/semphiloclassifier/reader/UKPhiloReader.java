@@ -9,7 +9,7 @@ import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
 import it.unito.di.semphiloclassifier.nlp.entities.SemanticThesisData;
 
 public class UKPhiloReader extends CorpusReader {
@@ -117,7 +117,7 @@ public class UKPhiloReader extends CorpusReader {
 			if((sd = d.getSemData()) != null) {
 				if(sd.getPhiloEntities() != null) {
 					Element el1 = new Element("philo_entities");
-					for(PhiloItem p : sd.getPhiloEntities()) {
+					for(PhiloEntity p : sd.getPhiloEntities()) {
 						Element el2 = new Element("entity");
 						el2.addContent(p.toString());
 						el1.addContent(el2);

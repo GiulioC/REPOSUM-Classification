@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Set;
 
 import it.unito.di.semphiloclassifier.exceptions.DatasetNotFoundException;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem.PhiloTag;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity.PhiloTag;
 import it.unito.di.semphiloclassifier.nlp.entities.SemanticThesisData;
 import it.unito.di.semphiloclassifier.nlp.semantic.BabelNetSemanticAnalysis;
 import it.unito.di.semphiloclassifier.reader.CorpusReader;
@@ -156,7 +156,7 @@ public class ThesisClassificationByPhiloEntities {
 						numPhiloOk++;
 						num0_1++;
 						pe_avg_0_1+=numElems;
-						for(PhiloItem item : sd.getPhiloEntities()) {
+						for(PhiloEntity item : sd.getPhiloEntities()) {
 							if(item.getTag().equals(PhiloTag.PHILO_CONCEPT) && item.getValue().split(" ").length>=2)
 								System.out.println(d.getIdDocumento());
 						}

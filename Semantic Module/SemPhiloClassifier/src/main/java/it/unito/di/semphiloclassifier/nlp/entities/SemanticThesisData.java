@@ -16,7 +16,7 @@ import it.uniroma1.lcl.babelnet.BabelSynsetID;
 public class SemanticThesisData implements Serializable {
 	
 	// insieme di nomi di filosofi cui si fa riferimento nell'abstract
-	private Set<PhiloItem> philoEntities;
+	private Set<PhiloEntity> philoEntities;
 	
 	// elenco di lemmi interessanti che caratterizzano la tesi
 	private Set<String> thesisLemmas;
@@ -29,11 +29,11 @@ public class SemanticThesisData implements Serializable {
 		this.thesisLemmas = thesisLemmas;
 	}
 
-	public Set<PhiloItem> getPhiloEntities() {
+	public Set<PhiloEntity> getPhiloEntities() {
 		return philoEntities;
 	}
 
-	public void setPhiloEntities(Set<PhiloItem> philosophers) {
+	public void setPhiloEntities(Set<PhiloEntity> philosophers) {
 		this.philoEntities = philosophers;
 	}
 	

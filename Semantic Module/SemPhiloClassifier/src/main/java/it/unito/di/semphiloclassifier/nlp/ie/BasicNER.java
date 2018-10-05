@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import it.unito.di.semphiloclassifier.nlp.entities.PhiloConcept;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloNamedEntity;
 import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
 import it.unito.di.semphiloclassifier.nlp.lexical.StanfordTokenizer;
 import it.unito.di.semphiloclassifier.nlp.lexical.Tokenizer;
 
@@ -30,7 +30,7 @@ public class BasicNER extends NER {
 	public void findNes() {
 		if(getText() == null)
 			return;
-		Set<PhiloItem> found = new HashSet<PhiloItem>();
+		Set<PhiloEntity> found = new HashSet<PhiloEntity>();
 		Tokenizer t = new StanfordTokenizer(getText());
 		List<String> tokens = t.getTokens();
 		Iterator<String> itTokens = tokens.iterator();
@@ -40,7 +40,7 @@ public class BasicNER extends NER {
 			String token = itTokens.next();
 			// comincia con maiuscola e il token precedente non è vuoto e neppure equivalente a '.'
 			if(token.length() > 1 && Character.isUpperCase(token.charAt(0)))
-				found.add(new PhiloConcept(token.toLowerCase()));
+				found.add(new PhiloNamedEntity(token.toLowerCase(),-1,-1));
 			if(token.length() > 1 && Character.isUpperCase(token.charAt(0)) && !(previousToken.equals(".") || previousToken.equals(""))) {
 				if(ne == null)
 					ne = token.toLowerCase();
@@ -49,7 +49,7 @@ public class BasicNER extends NER {
 			}
 			else {
 				if(ne != null) {
-					found.add(new PhiloEntity(ne,-1,-1));
+					found.add(new PhiloNamedEntity(ne,-1,-1));
 					ne=null;
 				}
 				

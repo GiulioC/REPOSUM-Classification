@@ -9,9 +9,9 @@ import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.Triple;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloNamedEntity;
 import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem.PhiloTag;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity.PhiloTag;
 
 /**
  * La classe permette di analizzare un testo
@@ -57,7 +57,7 @@ public class StanfordNER extends NER {
 	public void findNes() {
 		if(getText() == null)
 			return;
-		Set<PhiloItem> found = new HashSet<PhiloItem>();
+		Set<PhiloEntity> found = new HashSet<PhiloEntity>();
 		List<Triple> res = classifier.classifyToCharacterOffsets(getText());
 		for(Triple el : res) {
 			String type = (String) el.first;
@@ -68,7 +68,7 @@ public class StanfordNER extends NER {
 			// determino il (o i) token che definiscono la named entity
 			String value = getText().substring(cs, ce);
 			if(type.equals("PERSON")) 
-				found.add(new PhiloEntity(value.toLowerCase(), cs,ce ));
+				found.add(new PhiloNamedEntity(value.toLowerCase(), cs,ce ));
 		}
 		setNes(found);
 	}

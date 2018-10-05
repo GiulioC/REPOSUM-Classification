@@ -19,9 +19,9 @@ import it.uniroma1.lcl.jlt.util.Language;
 import it.unito.di.semphiloclassifier.babelnet.BabelNetAccess;
 import it.unito.di.semphiloclassifier.babelnet.LocalBabelNetAccess;
 import it.unito.di.semphiloclassifier.nlp.entities.PhiloConcept;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
 import it.unito.di.semphiloclassifier.nlp.entities.SemanticThesisData;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem.PhiloTag;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity.PhiloTag;
 import it.unito.di.semphiloclassifier.nlp.ie.BasicNER;
 import it.unito.di.semphiloclassifier.nlp.ie.NER;
 import it.unito.di.semphiloclassifier.nlp.ie.StanfordNER;
@@ -71,24 +71,24 @@ public class BabelNetSemanticAnalysis {
 	/**
 	 * la lista delle Named Entity trovate
 	 */
-	private Set<PhiloItem> nes;
+	private Set<PhiloEntity> nes;
 	
 	/**
 	 * la lista delle mwe trovate candidate ad essere entità filosofiche
 	 */
-	private Set<PhiloItem> mwes;
+	private Set<PhiloEntity> mwes;
 	
 	
 	
-	public Set<PhiloItem> getMwes() {
+	public Set<PhiloEntity> getMwes() {
 		return mwes;
 	}
 
-	public void setMwes(Set<PhiloItem> mwes) {
+	public void setMwes(Set<PhiloEntity> mwes) {
 		this.mwes = mwes;
 	}
 
-	public Set<PhiloItem> getNes() {
+	public Set<PhiloEntity> getNes() {
 		return nes;
 	}
 
@@ -171,17 +171,17 @@ public class BabelNetSemanticAnalysis {
 		if(nes == null)
 			return null;
 		
-		Set<PhiloItem> philoEntities = new HashSet<PhiloItem>();
+		Set<PhiloEntity> philoEntities = new HashSet<PhiloEntity>();
 		
 		// unisco nes e mwes
-		Set<PhiloItem> temp = (Set<PhiloItem>)((HashSet)nes).clone();
+		Set<PhiloEntity> temp = (Set<PhiloEntity>)((HashSet)nes).clone();
 		if(mwes!=null)
 			temp.addAll(mwes);
 				
-		for(PhiloItem ne : temp) {
+		for(PhiloEntity ne : temp) {
 			
 			if(ne.getTag() == PhiloTag.PHILO_CONCEPT || 
-					ne.getTag() == PhiloTag.PHILO_ENTITY) {
+					ne.getTag() == PhiloTag.PHILO_NAMED_ENTITY) {
 				String value = ne.getValue();
 				BabelSynset bs;
 				List<BabelSynset> syns = bn.getSynsets(value,BabelPOS.NOUN);

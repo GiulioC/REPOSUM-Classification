@@ -6,7 +6,7 @@ import java.util.List;
 
 import it.uniroma1.lcl.babelnet.BabelSynset;
 import it.uniroma1.lcl.babelnet.data.BabelPOS;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem.PhiloTag;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity.PhiloTag;
 
 public class RESTBabelNetAccess implements BabelNetAccess {
 

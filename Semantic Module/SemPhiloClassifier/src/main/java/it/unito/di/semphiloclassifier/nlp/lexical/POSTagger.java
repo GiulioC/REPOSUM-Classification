@@ -3,7 +3,7 @@ package it.unito.di.semphiloclassifier.nlp.lexical;
 import java.util.List;
 import java.util.Set;
 
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloItem;
+import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
 
 /**
  * La classe implementa la struttura di base di un
@@ -39,7 +39,7 @@ public class POSTagger {
 	
 	public void printResult() {}
 
-	public Set<PhiloItem> filterPossiblyPhilosophicalConcepts() {
+	public Set<PhiloEntity> filterPossiblyPhilosophicalConcepts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
