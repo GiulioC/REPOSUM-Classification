@@ -3,12 +3,14 @@ from heapq import nsmallest, nlargest
 import matplotlib.pyplot as plt
 import dataset_utils as dsu
 import pandas as pd
+import numpy as np
 import re
 
 stat_year = False
 stat_corpus = False
 stat_train = False
 stat_test = False
+stat_feature_score = False
 
 #########################################################################################################
 
@@ -302,6 +304,25 @@ if stat_test:
     print("Total unique words prep:",len(unique_words_prep))
     print("Avg word per doc:",tot_words/(file_abs.count()[0]+file_nabs.count()[0]))
     print("Avg word per doc prep:",tot_words_prep/(file_abs.count()[0]+file_nabs.count()[0]))
+
+if stat_feature_score:
+    #plot top N feature scores
+    num_top_features = 30
+    forest = joblib.load("models/randomforestCLF_noSubj.pkl")
+    importances = clf.feature_importances_
+    std = np.std([tree.feature_importances_ for tree in forest.estimators_],axis=0)
+    indices = np.argsort(importances)[::-1][0:num_top_features]
+    X = train_data
+    feature_names = vectorizer.get_feature_names()
+
+    plt.figure()
+    plt.title("Features score")
+    plt.bar(range(num_top_features), importances[indices],color="r", yerr=std[indices], align="center")
+    plt.xticks(range(num_top_features), [feature_names[ind] for ind in indices])
+    plt.xticks(rotation=90)
+    plt.xlim([-1, num_top_features])
+    plt.show()
+
 
 
 
