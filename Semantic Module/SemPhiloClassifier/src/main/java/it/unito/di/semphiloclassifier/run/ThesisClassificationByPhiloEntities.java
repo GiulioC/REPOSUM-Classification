@@ -16,7 +16,6 @@ import java.util.Set;
 
 import it.unito.di.semphiloclassifier.exceptions.DatasetNotFoundException;
 import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity;
-import it.unito.di.semphiloclassifier.nlp.entities.PhiloEntity.PhiloTag;
 import it.unito.di.semphiloclassifier.nlp.entities.SemanticThesisData;
 import it.unito.di.semphiloclassifier.nlp.semantic.BabelNetSemanticAnalysis;
 import it.unito.di.semphiloclassifier.reader.CorpusReader;
@@ -95,13 +94,13 @@ public class ThesisClassificationByPhiloEntities {
 			
 		}
 		
-		System.out.println("media elementi in philo: "+philoInPhilo/philoTotal);
-		System.out.println("media elementi in nonPhilo: "+philoInNonPhilo/nonPhiloTotal);
-		System.out.println("numero elementi sconosciuti: "+unknown);
-		System.out.print("minPhilo: "+minPhilo);
-		System.out.print("maxPhilo: "+maxPhilo);
-		System.out.print("minNonPhilo: "+minNonPhilo);
-		System.out.print("maxNonPhilo: "+maxNonPhilo);
+		System.out.println("numero medio philo_entities in tesi di filosofia: "+philoInPhilo/philoTotal);
+		System.out.println("numero medio philo_entities in tesi non di filosofia: "+philoInNonPhilo/nonPhiloTotal);
+		System.out.println("numero tesi di tipo sconosciuto: "+unknown);
+		System.out.println("minimo numero di philo entities in tesi di filosofia: "+minPhilo);
+		System.out.println("massimo numero di philo entities in tesi di filosofia: "+maxPhilo);
+		System.out.println("minimo numero di philo entities in tesi non di filosofia: "+minNonPhilo);
+		System.out.println("massimo numero di philo entities in tesi non di filosofia: "+maxNonPhilo);
 		
 		reader.save("UKPhiloWithEntities");
 		reader.toXML("UKPhiloWithEntities");
@@ -156,10 +155,6 @@ public class ThesisClassificationByPhiloEntities {
 						numPhiloOk++;
 						num0_1++;
 						pe_avg_0_1+=numElems;
-						for(PhiloEntity item : sd.getPhiloEntities()) {
-							if(item.getTag().equals(PhiloTag.PHILO_CONCEPT) && item.getValue().split(" ").length>=2)
-								System.out.println(d.getIdDocumento());
-						}
 					}
 					numTotRec++;
 				}
@@ -181,19 +176,19 @@ public class ThesisClassificationByPhiloEntities {
 		}
 		
 		
-		System.out.println(numPhiloOk+" su "+numTotPhilo);
-		System.out.println(numNonPhiloOk+" su "+numTotNoPhilo);
+		System.out.println("tesi filosofia classificate ok / tesi filosofia totali: "+numPhiloOk+" su "+numTotPhilo);
+		System.out.println("tesi non di filosofia classificate ok / tesi non di filosofia totali: "+numNonPhiloOk+" su "+numTotNoPhilo);
 		System.out.println("prec: "+numPhiloOk/numTotRec);
 		System.out.println("rec: "+numPhiloOk/numTotPhilo);
 		System.out.println("acc: "+(numPhiloOk+numNonPhiloOk)/numElemTotal);
 		double denom = (1/(numPhiloOk/numTotRec) + 1/(numPhiloOk/numTotPhilo));
 		System.out.println("f1: "+2.0/denom);
 		
-		System.out.println("1_1: "+num1_1);
-		System.out.println("0_1: "+num0_1);
+		System.out.println("numero spiegazioni che confermano scelta RF correttamente (primo tipo): "+num1_1);
+		System.out.println("numero spiegazioni che ribaltano correttamente scelta RF (secondo tipo): "+num0_1);
 		
-		System.out.println("avg1_1: "+pe_avg_1_1/num1_1);
-		System.out.println("avg0_1: "+pe_avg_0_1/num0_1);
+		System.out.println("media numero philo_entities per spiegazioni del primo tipo: "+pe_avg_1_1/num1_1);
+		System.out.println("media numero philo_entities per spiegazioni del secondo tipo: "+pe_avg_0_1/num0_1);
 		
 		try {
 			OutputStreamWriter writer =
