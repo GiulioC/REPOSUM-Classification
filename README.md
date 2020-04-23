@@ -10,4 +10,4 @@ In this paper we illustrate a system aimed at solving a long-standing and challe
 
 ### Keywords
 
-Text categorization Lexical resources Semantics NLP Language models
+Text categorization, Lexical resources, Semantics, NLP, Language models
